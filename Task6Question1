@@ -1,0 +1,30 @@
+import requests
+import time
+
+def get_access_token(email, password):
+    url = "https://reqres.in/api/login"
+    payload = {
+        "email": email,
+        "password": password
+    }
+
+    start_time = time.time()
+
+    
+    response = requests.post(url, json=payload)
+    
+    
+    time_taken = time.time() - start_time
+
+    if response.status_code == 200:
+        token = response.json().get("token")
+        return token, time_taken
+    else:
+        raise Exception(f"Failed to login: {response.status_code}, {response.text}")
+    
+    
+email = "eve.holt@reqres.in"
+password = "cityslicka"
+token, time_taken = get_access_token(email, password)
+
+print(f"Token: {token}, Time taken: {time_taken} seconds")

@@ -1,0 +1,43 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+
+def setup_browser():
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    return driver
+
+def login(driver, username, password):
+    driver.get("https://www.saucedemo.com")
+    
+    username_field = driver.find_element(By.ID, "user-name")
+    password_field = driver.find_element(By.ID, "password")
+    
+    username_field.send_keys(username)
+    password_field.send_keys(password)
+    
+    login_button = driver.find_element(By.ID, "login-button")
+    login_button.click()
+    
+    time.sleep(5) 
+
+    try:
+        assert "Swag Labs" in driver.title
+        print("Login test passed.")
+    except AssertionError:
+        print("Login test failed.")
+
+def main():
+    username = "standard_user"
+    password = "secret_sauce"
+    
+    driver = setup_browser()
+    try:
+        login(driver, username, password)
+    finally:
+        driver.quit()
+
+if __name__ == "__main__":
+    main()

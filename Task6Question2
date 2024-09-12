@@ -1,0 +1,28 @@
+import requests
+import time
+
+def create_user(name, job):
+    url = "https://reqres.in/api/users"
+    payload = {
+        "name": name,
+        "job": job
+    }
+
+    start_time = time.time()
+
+    response = requests.post(url, json=payload)
+
+    time_taken = time.time() - start_time
+
+    if response.status_code == 201:
+        user_data = response.json()
+        return user_data["name"], user_data["job"], user_data["id"], user_data["createdAt"], time_taken
+    else:
+        raise Exception(f"Failed to create user: {response.status_code}, {response.text}")
+
+# Test
+name = "John Doe"
+job = "Software Developer"
+name, job, user_id, created_at, time_taken = create_user(name, job)
+
+print(f"Name: {name}, Job: {job}, ID: {user_id}, Created At: {created_at}, Time taken: {time_taken} seconds")

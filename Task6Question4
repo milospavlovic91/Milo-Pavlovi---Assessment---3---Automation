@@ -1,0 +1,22 @@
+import requests
+import time
+
+def delete_user(user_id):
+    url = f"https://reqres.in/api/users/{user_id}"
+    
+    start_time = time.time()
+
+    response = requests.delete(url)
+
+    time_taken = time.time() - start_time
+
+    if response.status_code == 204:
+        return time_taken
+    else:
+        raise Exception(f"Failed to delete user: {response.status_code}, {response.text}")
+
+# Test
+user_id = 1 
+time_taken = delete_user(user_id)
+
+print(f"Time taken to delete user: {time_taken} seconds")
