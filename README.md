@@ -48,7 +48,7 @@ This task involves writing automated test cases for the provided interface using
 - **Function**: `add_item_to_cart_and_verify(driver, item_name)`
 - **Description**: Adds an item to the cart, verifies its presence, removes it, and verifies its removal.
 
- Setup Instructions
+** Setup Instructions**
 
 1. Clone the Repository
    ```bash
@@ -60,8 +60,7 @@ cd Milo-Pavlovi---Assessment---3---Automation
 bash
 pip install -r requirements.txt
 
-
-Usage Instructions
+**Usage Instructions**
 Running API Tests
 1.	Navigate to the directory containing the API test scripts.
 2.	Run the desired script using Python:
@@ -72,7 +71,8 @@ Running Selenium Tests
 2.	Run the desired script using Python:
 bash
 python <script_name>.py
-Contact
+
+**Contact**
 For any questions or additional information, please contact me at:
 •	Email: pavlovicmpavlovic@gmail.com
 Thank you for reviewing my automation assessment!
