@@ -16,14 +16,14 @@ def update_user(user_id, name, job):
 
     if response.status_code == 200:
         user_data = response.json()
-        print("API Response:", user_data)  # Ispisuje celokupan odgovor API-ja za debagovanje
+        print("API Response:", user_data) 
 
         return user_data.get("name"), user_data.get("job"), user_id, user_data.get("updatedAt"), time_taken
     else:
         raise Exception(f"Failed to update user: {response.status_code}, {response.text}")
 
-# Testiraj funkciju
-user_id = 1  # Primer ID-a korisnika koji želite da ažurirate
+# Test
+user_id = 1
 name = "Miloš Pavlović"
 job = "QA Engineer"
 name, job, user_id, updated_at, time_taken = update_user(user_id, name, job)
